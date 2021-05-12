@@ -1,0 +1,28 @@
+
+syntax = "proto3";
+// The document of proto3: https://developers.google.com/protocol-buffers/docs/proto3
+
+// Package name definition, which can be omitted in Python.
+package mario;
+
+
+/*
+`message` is used to define the structure of the data to be transmitted, after the equal sign
+is the field number. Each field in the message definition has a unique number.
+The overall format is similar to defining a class in Python or a structure in Golang.
+*/
+message Request {
+    int64 client_id = 1;
+    bytes request_data = 2;
+}
+
+message Response {
+    int64 server_id = 1;
+    bytes response_data = 2;
+}
+
+// `service` is used to define methods for gRPC services in a fixed format, similar to defining
+//an interface in Golang
+service GRPCMario {
+    rpc GetAction (Request) returns (Response);
+}
